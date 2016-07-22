@@ -18,18 +18,21 @@
       {% endif %}
     {% endwith %}
     <div id = "top">
-  		<form action="/loginreg/add" method="post">
-<br>First Name: <input type="text" name="f_first_name">
-<br>Last Name: <input type="text" name="f_last_name">
+    <h2>Welcome!</h2>
+  		<form action="/pokes/add" method="post">
+<br>Name: <input type="text" name="f_name">
+<br>Alias: <input type="text" name="f_alias">
 <br>Email: <input type="text" name="f_email">
-<br>Password:<input type="password" name="f_password">
-<br>Confirm PW: <input type="password" name="f_pw_confirmation">
+<br>Password: <input type="password" name="f_password">
+<p> Password should be at least 8 characters</p>
+Confirm PW: <input type="password" name="f_pw_confirmation">
+<br><br>Date of Birth: <input type="date" name="f_birth">
 <br><br><input type="submit" value="Register">
 
 		</form>
 		</div>
 		<div id="bottom">
-		<form action="/loginreg/login" method="post">
+		<form action="/pokes" method="post">
 
 		<br>Login: <input type="text" name="f_login">
 		<br>Password:<input type="password" name="f_password">

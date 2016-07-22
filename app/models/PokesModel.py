@@ -15,9 +15,9 @@ from system.core.model import Model
 # EMAIL_REGEX = re.compile(r'^[a-zA-Z0-9\.\+_-]+@[a-zA-Z0-9\._-]+\.[a-zA-Z]*$')
 # NAME_REGEX = re.compile(r'^[a-zA-Z]+$')
 
-class LoginregModel(Model):
+class PokesModel(Model):
     def __init__(self):
-        super(LoginregModel, self).__init__()
+        super(PokesModel, self).__init__()
     """
     Below is an example of a model method that queries the database for all users in a fictitious application
     
@@ -46,18 +46,19 @@ class LoginregModel(Model):
     """
 
     def add_one_user_m(self, new_user_details):
+            print "MMMMMMMMMMMMMM",new_user_details
+            print "NNNNNNNNNNNN", new_user_details['f_birth']
             password = new_user_details['f_password']
             hashed_pw = self.bcrypt.generate_password_hash(password)
-            add_query = "INSERT INTO users (first_name, last_name, email, pw_hash, created_at, updated_at) \
-            VALUES (:spec_first_name, :spec_last_name, :spec_email, :spec_pw_hash, NOW(), NOW())"
+            add_query = "INSERT INTO users (name, alias, email, pw_hash, birth, created_at, updated_at) \
+            VALUES (:spec_name, :spec_alias, :spec_email, :spec_pw_hash, :spec_birth, NOW(), NOW())"
             add_data = { 
-            'spec_first_name': new_user_details['f_first_name'],
-            'spec_last_name': new_user_details['f_last_name'],
+            'spec_name': new_user_details['f_name'],
+            'spec_alias': new_user_details['f_alias'],
             'spec_email': new_user_details['f_email'],
-            'spec_pw_hash': hashed_pw
+            'spec_pw_hash': hashed_pw,
+            'spec_birth': new_user_details['f_birth']
             }
-            self.db.query_db(add_query, add_data)
-            self.db.query_db(add_query, add_data)
             return self.db.query_db(add_query, add_data)
 
     def login_m(self, new_user_details):
@@ -68,5 +69,10 @@ class LoginregModel(Model):
             if self.bcrypt.check_password_hash(user[0]['pw_hash'], new_user_details['f_password']):
                 return user[0]
         return False
+
+    def get_all_users_m(self):
+        # return self.db.query_db("SELECT * FROM users ORDER BY created_at DESC")
+        return self.db.query_db("SELECT users.id, users.name, users.alias, pokes.num_pokes FROM users \
+            LEFT JOIN pokes ON users.id = pokes.user_id")
 
 

@@ -4,24 +4,28 @@
  
 #container {
 	margin: 0 auto;
-	width: 600px;
+	width: 800px;
 	height: auto;
     /*background-color: green;*/
 	/*border:solid;*/
     }
 
     #top {
-    	margin-top: 40px;
-    	padding-top: 50px;
-    	width: 400px;
-    	height: 200px;
+    	margin-top: 20px;
+    	padding-top: 10px;
+    	width: 300px;
+    	height: 400px;
+        display: inline-block;
+        vertical-align: top;
     }
 
     #bottom {
-    	width:400px;
-    	height: 200px;
-    	padding-top: 50px;
-    	/*border:solid;*/
+        margin-top: 20px;
+        padding-top: 80px;
+        width: 300px;
+        height: 400px;
+        display: inline-block;
+        vertical-align: top;
     }
 
 .error {

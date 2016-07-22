@@ -7,12 +7,62 @@
 <body>
 
 <h2>Success! Welcome {{ s_f_name }}</h2>
+<!-- <p>{{ user['num_pokes'] }} people poked you!</p> -->
+<!-- <p>Successfully {{ s_msg }}</p> -->
 <br>
 <br>
-<p>Successfully {{ s_msg }}</p>
+<br><a href="/pokes/logout"><button type="button ">Logout</button></a>
 <br>
-<br>
-<a href="/loginreg/logout"><button type="button ">Logout</button></a>
+  <!-- {{ s_alluser }} -->
+  	<div id = "container">
+  		<div id = "content">
 
+			<p> People you may want to poke </p>
+			<div id="bottom">
+				<table>
+					<thead>
+						<tr>
+							<th>
+								Name
+							</th>
+							<th>
+								Alias
+							</th>		
+							<th>
+								Email Address
+							</th>				
+							<th>
+								Poke History
+							</th>	
+							<th>
+								Action
+							</th>	
+						</tr>
+					</thead>
+					<tbody>
+					{% for user in s_alluser %}
+					<tr>
+						<td> {{ user['name'] }} </td>
+						<td>  {{ user['alias'] }} </td>
+						<td> {{ user['email'] }}</td>	
+						<!-- <td> {{ user['num_pokes'] }}  {{user['id']}} </td> -->
+						<td> {{ user['num_pokes'] }}</td>
+						<!-- <td><a href="/pokes/pokes/{{user['id']}}"><button type="button" name="poke">Poke!</button></a> -->
+<td>						
+
+
+		</form>
+		    <form action="/pokes/add/{{ user['id'] }}" id='poke' method='POST'>
+		    	<input type="hidden" name='action' value='poke'/>
+		    	<input type="submit" value="Poke!"/>
+		    </form>
+
+						</td>
+					</tr>
+					{% endfor %}
+					</tbody>
+				</table>
+			</div>
+		</div>
 </body>
 </html>
